@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> To do list </title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: rgb(231, 237, 243);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 0;
+            height: 80vh;
+            margin-left: 50%;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgb(0, 0, 0, 0.1);
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .input-container input {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+
+
+        }
+
+        .input-container button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 4px;
+            padding-left: 9px;
+            padding-right: 9px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 8px
+        }
+
+        .input-container button:hover {
+            background-color: #0c59ac;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-list li {
+            background-color: #f0f0f0;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-list li button {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .task-list li button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Enter your text">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+        <ul id="taskList" class="task-list"></ul>
+
+    </div>
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+            const task = taskInput.value.trim();
+
+            if (task) {
+                const listItem = document.createElement('li');
+                listItem.textContent = task;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function () {
+                    taskList.removeChild(listItem);
+                };
+                listItem.appendChild(deleteButton);
+                taskList.appendChild(listItem);
+                taskInput.value = '';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
